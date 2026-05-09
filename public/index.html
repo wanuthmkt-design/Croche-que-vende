@@ -116,8 +116,11 @@
 
   /* SHOWCASE */
   .showcase{background:var(--white);padding:0 24px 48px;text-align:center;}
-  .showcase img{width:100%;max-width:540px;display:block;margin:0 auto;animation:flutuar 3s ease-in-out infinite;}
-  @keyframes flutuar{0%,100%{transform:translateX(0);}50%{transform:translateX(14px);}}
+  .showcase img{width:100%;max-width:320px;display:block;margin:0 auto;animation:floatPhone 3.5s ease-in-out infinite;filter:drop-shadow(0 24px 48px rgba(255,77,141,.28));}
+  @keyframes floatPhone{
+    0%,100%{transform:translateY(0) rotate(-1.5deg);filter:drop-shadow(0 24px 48px rgba(255,77,141,.28));}
+    50%{transform:translateY(-18px) rotate(1.5deg);filter:drop-shadow(0 40px 64px rgba(255,77,141,.48));}
+  }
 
   /* FAIXA TOPO */
   .top-bar{background:var(--pink);color:white;text-align:center;padding:10px 24px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
@@ -202,7 +205,7 @@ fbq('track','PageView');
 
 <!-- SHOWCASE BONECAS -->
 <section class="showcase">
-  <img src="/bonecas-hero.png" alt="Bonecas Amigurumi que você vai aprender a criar">
+  <img src="/showcase.png" alt="Bonecas Amigurumi que você vai aprender a criar">
 </section>
 
 <!-- GALERIA -->
