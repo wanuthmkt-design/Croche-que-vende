@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crochê que Vende – Bonecas Amigurumi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --pink:#FF4D8D;--pink-dark:#E0356F;--pink-light:#FF85B3;
+    --pink-bg:#FFF0F5;--pink-soft:#FFD6E7;
+    --black:#111111;--gray:#757575;--white:#fff;
+  }
+  body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);}
+  html{scroll-behavior:smooth;}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#1a0a10 0%,#2D1520 55%,#4A1830 100%);color:white;padding:64px 24px 56px;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:rgba(255,77,141,.12);top:-140px;right:-100px;}
+  .hero::after{content:'';position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(255,77,141,.08);bottom:-80px;left:-60px;}
+  .hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+  .hero-tag{display:inline-block;background:rgba(255,77,141,.25);border:1px solid rgba(255,77,141,.45);color:var(--pink-light);font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:6px 18px;border-radius:20px;margin-bottom:22px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:700;line-height:1.2;margin-bottom:18px;}
+  .hero h1 span{color:var(--pink-light);}
+  .hero p{font-size:clamp(15px,2.5vw,18px);opacity:.85;line-height:1.7;max-width:540px;margin:0 auto 32px;}
+  .btn-cta{display:inline-block;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:white;font-size:17px;font-weight:700;padding:17px 42px;border-radius:12px;text-decoration:none;box-shadow:0 6px 28px rgba(255,77,141,.45);transition:transform .15s,box-shadow .2s;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+  .btn-cta:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(255,77,141,.55);}
+
+  /* PARA QUEM É */
+  .for-whom{background:var(--pink-bg);padding:56px 24px;}
+  .for-whom-inner{max-width:680px;margin:0 auto;text-align:center;}
+  .section-label{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);font-weight:700;margin-bottom:32px;line-height:1.3;}
+  .cards-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;text-align:left;}
+  .check-card{background:white;border:1px solid var(--pink-soft);border-radius:14px;padding:20px 18px;display:flex;gap:12px;align-items:flex-start;}
+  .check-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+  .check-card p{font-size:14px;line-height:1.55;color:#333;}
+
+  /* O QUE VOCÊ VAI APRENDER */
+  .learn{padding:56px 24px;text-align:center;}
+  .learn-inner{max-width:700px;margin:0 auto;}
+  .learn-list{display:flex;flex-direction:column;gap:12px;margin-top:28px;text-align:left;}
+  .learn-item{display:flex;align-items:flex-start;gap:14px;background:var(--pink-bg);border-left:4px solid var(--pink);border-radius:0 10px 10px 0;padding:14px 18px;}
+  .learn-num{font-size:13px;font-weight:700;color:var(--pink);min-width:22px;}
+  .learn-item p{font-size:14px;line-height:1.55;color:#222;}
+  .learn-item p strong{display:block;font-size:15px;margin-bottom:2px;}
+
+  /* DEPOIMENTOS */
+  .testimonials{background:var(--pink-bg);padding:56px 24px;text-align:center;}
+  .testimonials-inner{max-width:700px;margin:0 auto;}
+  .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:28px;}
+  .testi-card{background:white;border-radius:14px;border:1px solid var(--pink-soft);padding:20px 18px;text-align:left;}
+  .testi-stars{color:var(--pink);font-size:14px;margin-bottom:10px;}
+  .testi-text{font-size:13px;line-height:1.65;color:#444;font-style:italic;margin-bottom:16px;}
+  .testi-footer{display:flex;align-items:center;gap:10px;}
+  .testi-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--pink-soft);flex-shrink:0;}
+  .testi-info{display:flex;flex-direction:column;}
+  .testi-name{font-size:13px;font-weight:700;color:var(--black);}
+  .testi-city{font-size:11px;color:var(--gray);}
+
+  /* FAQ */
+  .faq{padding:56px 24px;background:white;}
+  .faq-inner{max-width:680px;margin:0 auto;}
+  .faq-list{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
+  .faq-item{border:1.5px solid var(--pink-soft);border-radius:14px;overflow:hidden;}
+  .faq-question{width:100%;background:none;border:none;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--black);text-align:left;}
+  .faq-question:hover{background:var(--pink-bg);}
+  .faq-icon{font-size:18px;color:var(--pink);flex-shrink:0;transition:transform .3s;}
+  .faq-item.open .faq-icon{transform:rotate(45deg);}
+  .faq-answer{display:none;padding:0 20px 18px;font-size:13px;line-height:1.7;color:#555;}
+  .faq-item.open .faq-answer{display:block;}
+
+  /* GARANTIA */
+  .garantia{padding:40px 24px;background:var(--pink-bg);text-align:center;}
+  .garantia-inner{max-width:520px;margin:0 auto;}
+
+  /* OFERTA */
+  .offer{padding:56px 24px;text-align:center;background:var(--pink-bg);}
+  .offer-inner{max-width:780px;margin:0 auto;}
+  .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:12px;}
+  .offer-box{background:white;border:2px solid var(--pink-soft);border-radius:20px;padding:32px 28px;box-shadow:0 8px 40px rgba(255,77,141,.10);position:relative;display:flex;flex-direction:column;}
+  .offer-box.destaque{border-color:var(--pink);box-shadow:0 8px 40px rgba(255,77,141,.28);}
+  .badge-top{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:white;font-size:11px;font-weight:700;letter-spacing:.6px;padding:5px 16px;border-radius:20px;white-space:nowrap;}
+  .offer-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+  .offer-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:20px;}
+  .offer-includes{text-align:left;list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:9px;flex:1;}
+  .offer-includes li{display:flex;align-items:center;gap:10px;font-size:13px;color:#333;}
+  .offer-includes li::before{content:'✓';color:var(--pink);font-weight:700;flex-shrink:0;}
+  .offer-price-wrap{margin-bottom:20px;}
+  .offer-price{font-size:40px;font-weight:700;color:var(--pink);line-height:1;}
+  .offer-price sup{font-size:18px;vertical-align:top;margin-top:6px;display:inline-block;}
+  .offer-price-note{font-size:12px;color:var(--gray);margin-top:4px;}
+  .guarantee{margin-top:14px;font-size:11px;color:var(--gray);display:flex;align-items:center;justify-content:center;gap:6px;}
+  .bonus-block{background:linear-gradient(135deg,#fff0f5,#ffe0ee);border:1.5px dashed var(--pink);border-radius:14px;padding:16px 18px;margin-bottom:22px;}
+  .bonus-block-title{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--pink-dark);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+  .bonus-list{display:flex;flex-direction:column;gap:8px;}
+  .bonus-item{display:flex;align-items:center;gap:10px;background:white;border-radius:9px;padding:9px 12px;box-shadow:0 2px 8px rgba(255,77,141,.08);}
+  .bonus-item span.ico{font-size:18px;flex-shrink:0;}
+  .bonus-item p{font-size:13px;font-weight:600;color:var(--black);line-height:1.3;}
+  .bonus-item p small{display:block;font-size:11px;font-weight:400;color:var(--gray);}
+  .btn-pulse{animation:btnpulse 1.6s ease-in-out infinite;}
+  @keyframes btnpulse{0%,100%{box-shadow:0 6px 28px rgba(255,77,141,.45);}50%{box-shadow:0 6px 40px rgba(255,77,141,.85),0 0 0 8px rgba(255,77,141,.15);}}
+  @media(max-width:580px){.offer-grid{grid-template-columns:1fr;}}
+
+  /* GALERIA / CARROSSEL */
+  .gallery{padding:56px 0;text-align:center;}
+  .gallery-inner{max-width:900px;margin:0 auto;}
+  .gallery-inner .section-label,.gallery-inner .section-title{padding:0 24px;}
+  .carousel-wrap{overflow:hidden;margin-top:28px;position:relative;}
+  .carousel-track{display:flex;gap:16px;width:max-content;animation:scroll-dir 18s linear infinite;}
+  .carousel-track img{height:260px;width:auto;border-radius:14px;object-fit:cover;box-shadow:0 4px 20px rgba(255,77,141,.15);}
+  .carousel-track.reverse{animation-name:scroll-rev;}
+  @keyframes scroll-dir{0%{transform:translateX(-50%);}100%{transform:translateX(0%);}}
+  @keyframes scroll-rev{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+
+  /* SHOWCASE */
+  .showcase{background:var(--white);padding:0 24px 48px;text-align:center;}
+  .showcase img{width:100%;max-width:540px;display:block;margin:0 auto;animation:flutuar 3s ease-in-out infinite;}
+  @keyframes flutuar{0%,100%{transform:translateX(0);}50%{transform:translateX(14px);}}
+
+  /* FAIXA TOPO */
+  .top-bar{background:var(--pink);color:white;text-align:center;padding:10px 24px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+  .top-bar span{display:inline-block;animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.75;}}
+
+  /* POPUP UPSELL */
+  .popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:16px;}
+  .popup-overlay.open{display:flex;}
+  .popup-box{background:white;border-radius:24px;max-width:420px;width:100%;overflow:hidden;animation:popIn .3s ease;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+  @keyframes popIn{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+  .popup-header{background:linear-gradient(135deg,var(--pink-dark),var(--pink));padding:22px 24px;text-align:center;position:relative;}
+  .popup-header .popup-tag{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:6px;}
+  .popup-header h3{font-family:'Playfair Display',serif;font-size:20px;color:white;font-weight:700;line-height:1.3;}
+  .popup-close{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.2);border:none;color:white;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .popup-saving{background:linear-gradient(135deg,#fff0f5,#ffe0ee);border:1.5px solid var(--pink-soft);border-radius:12px;padding:14px 16px;text-align:center;margin-bottom:18px;}
+  .popup-saving .tag-desc{font-size:11px;font-weight:700;color:var(--pink-dark);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px;}
+  .popup-saving .price-old{font-size:13px;color:var(--gray);text-decoration:line-through;margin-bottom:2px;}
+  .popup-saving .price-new{font-size:38px;font-weight:700;color:var(--pink);line-height:1;}
+  .popup-saving .price-new sup{font-size:16px;vertical-align:top;margin-top:6px;display:inline-block;}
+  .popup-saving .desconto-badge{display:inline-block;background:var(--pink);color:white;font-size:12px;font-weight:700;padding:3px 12px;border-radius:20px;margin-top:6px;}
+  .popup-items{display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+  .popup-item{display:flex;align-items:center;gap:9px;font-size:13px;color:#333;}
+  .popup-item::before{content:'✓';color:var(--pink);font-weight:700;flex-shrink:0;}
+  .popup-urgency{background:#fff8e1;border:1px solid #f9a825;border-radius:10px;padding:10px 14px;font-size:12px;color:#7a5c00;text-align:center;margin-bottom:18px;font-weight:600;}
+  .popup-btn-sim{width:100%;padding:15px;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 6px 24px rgba(255,77,141,.4);animation:btnpulse 1.6s ease-in-out infinite;margin-bottom:10px;}
+  .popup-btn-nao{width:100%;padding:10px;background:none;border:none;font-size:12px;color:var(--gray);cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline;}
+  .popup-btn-nao:hover{color:#333;}
+
+  /* NOTIFICAÇÃO SOCIAL */
+  .social-toast{position:fixed;bottom:24px;left:20px;z-index:999;background:white;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 32px rgba(0,0,0,.18);border-left:4px solid var(--pink);max-width:280px;transform:translateX(-320px);transition:transform .4s ease;pointer-events:none;}
+  .social-toast.show{transform:translateX(0);}
+  .social-toast-icon{font-size:28px;flex-shrink:0;}
+  .social-toast-text{font-size:12px;line-height:1.5;color:#333;}
+  .social-toast-text strong{display:block;font-size:13px;color:var(--black);}
+  .social-toast-time{font-size:10px;color:var(--gray);margin-top:2px;}
+
+  /* FOOTER */
+  footer{background:#111;color:rgba(255,255,255,.5);text-align:center;padding:24px;font-size:12px;}
+
+  @media(max-width:480px){
+    .hero{padding:48px 20px 44px;}
+    .offer-box{padding:28px 20px;}
+    .offer-price{font-size:36px;}
+  }
+</style>
+<!-- UTMify -->
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','965631876467884');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=965631876467884&ev=PageView&noscript=1"/></noscript>
+<!-- Fim Meta Pixel -->
+</head>
+<body>
+
+<!-- FAIXA TOPO -->
+<div class="top-bar"><span>🔥 OFERTA VÁLIDA SOMENTE HOJE 🔥</span></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Aprenda a criar<br><span>Bonecas Amigurumi</span><br>e transforme o crochê em renda</h1>
+    <p>Do primeiro ponto à primeira venda: o curso completo para quem quer aprender a fazer amigurumis incríveis e faturar com isso.</p>
+    <a href="#oferta" class="btn-cta">Quero começar agora →</a>
+  </div>
+</section>
+
+<!-- SHOWCASE BONECAS -->
+<section class="showcase">
+  <img src="/bonecas-hero.png" alt="Bonecas Amigurumi que você vai aprender a criar">
+</section>
+
+<!-- GALERIA -->
+<section class="gallery">
+  <div class="gallery-inner">
+    <p class="section-label">Criações incríveis</p>
+    <h2 class="section-title">Veja o que você vai aprender a criar</h2>
+    <div class="carousel-wrap">
+      <div class="carousel-track">
+        <img src="https://i.imgur.com/NJYc8F1.jpg" alt="Boneca Amigurumi 1">
+        <img src="https://i.imgur.com/Ww6NHQR.jpg" alt="Boneca Amigurumi 2">
+        <img src="https://i.imgur.com/FEhSdqu.jpg" alt="Boneca Amigurumi 3">
+        <img src="https://i.imgur.com/SbaBZjB.jpg" alt="Boneca Amigurumi 4">
+        <img src="https://i.imgur.com/NJYc8F1.jpg" alt="Boneca Amigurumi 1">
+        <img src="https://i.imgur.com/Ww6NHQR.jpg" alt="Boneca Amigurumi 2">
+        <img src="https://i.imgur.com/FEhSdqu.jpg" alt="Boneca Amigurumi 3">
+        <img src="https://i.imgur.com/SbaBZjB.jpg" alt="Boneca Amigurumi 4">
+      </div>
+    </div>
+    <div class="carousel-wrap" style="margin-top:16px;">
+      <div class="carousel-track reverse">
+        <img src="https://i.imgur.com/NPIX9R0.jpg" alt="Boneca Amigurumi 5">
+        <img src="https://i.imgur.com/iedq7F8.jpg" alt="Boneca Amigurumi 6">
+        <img src="https://i.imgur.com/kLEWyWm.jpg" alt="Boneca Amigurumi 7">
+        <img src="https://i.imgur.com/h92LCeI.jpg" alt="Boneca Amigurumi 8">
+        <img src="https://i.imgur.com/9wW2ikg.jpg" alt="Boneca Amigurumi 9">
+        <img src="https://i.imgur.com/MVbe0J8.jpg" alt="Boneca Amigurumi 10">
+        <img src="https://i.imgur.com/NPIX9R0.jpg" alt="Boneca Amigurumi 5">
+        <img src="https://i.imgur.com/iedq7F8.jpg" alt="Boneca Amigurumi 6">
+        <img src="https://i.imgur.com/kLEWyWm.jpg" alt="Boneca Amigurumi 7">
+        <img src="https://i.imgur.com/h92LCeI.jpg" alt="Boneca Amigurumi 8">
+        <img src="https://i.imgur.com/9wW2ikg.jpg" alt="Boneca Amigurumi 9">
+        <img src="https://i.imgur.com/MVbe0J8.jpg" alt="Boneca Amigurumi 10">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="for-whom">
+  <div class="for-whom-inner">
+    <p class="section-label">Para quem é</p>
+    <h2 class="section-title">Esse curso foi feito para você que...</h2>
+    <div class="cards-row">
+      <div class="check-card">
+        <span class="check-icon">🌱</span>
+        <p>Está começando no crochê e quer aprender do jeito certo, sem se perder.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-icon">🎀</span>
+        <p>Ama fazer bonecas amigurumi mas ainda não sabe como vender suas criações.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-icon">💰</span>
+        <p>Quer gerar uma renda extra (ou principal) com o artesanato que já ama fazer.</p>
+      </div>
+      <div class="check-card">
+        <span class="check-icon">🏠</span>
+        <p>Busca trabalhar de casa, no seu tempo, sem precisar de chefe ou horário fixo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE VOCÊ VAI APRENDER -->
+<section class="learn">
+  <div class="learn-inner">
+    <p class="section-label">Conteúdo do curso</p>
+    <h2 class="section-title">O que você vai aprender</h2>
+    <div class="learn-list">
+      <div class="learn-item">
+        <span class="learn-num">01</span>
+        <p><strong>Fundamentos do Amigurumi</strong>Materiais, pontos essenciais e como montar sua primeira boneca do zero.</p>
+      </div>
+      <div class="learn-item">
+        <span class="learn-num">02</span>
+        <p><strong>Técnicas de Acabamento</strong>Como dar vida às suas peças com acabamentos profissionais que encantam clientes.</p>
+      </div>
+      <div class="learn-item">
+        <span class="learn-num">03</span>
+        <p><strong>Precificação que Lucra</strong>Descubra o valor certo para as suas bonecas e pare de vender barato.</p>
+      </div>
+      <div class="learn-item">
+        <span class="learn-num">04</span>
+        <p><strong>Como e Onde Vender</strong>Estratégias práticas para vender pelo Instagram, WhatsApp e feiras.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="offer" id="oferta">
+  <div class="offer-inner">
+    <p class="section-label">Escolha seu plano</p>
+    <h2 class="section-title">Comece hoje mesmo</h2>
+    <div class="offer-grid">
+
+      <!-- CARD 1 - DESTAQUE -->
+      <div class="offer-box destaque">
+        <div class="badge-top">🔥 Plano mais vendido</div>
+        <p class="offer-label">Plano Completo</p>
+        <p class="offer-name">Crochê que Vende</p>
+        <ul class="offer-includes">
+          <li>Acesso completo a todos os módulos</li>
+          <li>Aulas em vídeo + materiais de apoio</li>
+          <li>Acesso a todas atualizações mensalmente</li>
+          <li>Guia de precificação para amigurumis</li>
+          <li>Dicas de vendas pelo Instagram e WhatsApp</li>
+          <li>Acesso vitalício ao conteúdo</li>
+        </ul>
+        <div class="bonus-block">
+          <div class="bonus-block-title">🎁 Bônus exclusivos inclusos</div>
+          <div class="bonus-list">
+            <div class="bonus-item">
+              <span class="ico">🎀</span>
+              <p>Bônus 1: Ideias extras de modelos<small>Inspirações para expandir seu catálogo</small></p>
+            </div>
+            <div class="bonus-item">
+              <span class="ico">🎨</span>
+              <p>Bônus 2: Combinações de cores<small>Guia completo de harmonia de cores</small></p>
+            </div>
+            <div class="bonus-item">
+              <span class="ico">📋</span>
+              <p>Bônus 3: Guia de organização<small>Organize sua produção e venda mais</small></p>
+            </div>
+            <div class="bonus-item">
+              <span class="ico">🎒</span>
+              <p>Bônus 4: Mochilas e bolsas<small>Aprenda a fazer peças de alto valor</small></p>
+            </div>
+          </div>
+        </div>
+        <div class="offer-price-wrap">
+          <div class="offer-price"><sup>R$</sup>34<span style="font-size:22px;font-weight:700;">,90</span></div>
+          <p class="offer-price-note">Pagamento único · Acesso imediato</p>
+        </div>
+        <a href="https://pay.wiapy.com/wa9crwFD4n" class="btn-cta btn-pulse" style="width:100%;display:block;text-align:center;">Garantir meu acesso agora →</a>
+        <p class="guarantee">🔒 Compra segura · Pagamento protegido</p>
+      </div>
+
+      <!-- CARD 2 - BÁSICO -->
+      <div class="offer-box">
+        <p class="offer-label">Plano Básico</p>
+        <p class="offer-name">Crochê que Vende</p>
+        <ul class="offer-includes">
+          <li>Acesso a todas receitas em PDF</li>
+          <li>Guia de precificação para amigurumis</li>
+          <li>Acesso Vitalício</li>
+        </ul>
+        <div class="offer-price-wrap">
+          <div class="offer-price"><sup>R$</sup>14<span style="font-size:22px;font-weight:700;">,90</span></div>
+          <p class="offer-price-note">Pagamento único · Acesso imediato</p>
+        </div>
+        <button onclick="document.getElementById('popup-upsell').classList.add('open')" class="btn-cta" style="width:100%;display:block;text-align:center;background:linear-gradient(135deg,#888,#555);border:none;cursor:pointer;font-family:'Inter',sans-serif;">Quero o plano básico →</button>
+        <p class="guarantee">🔒 Compra segura · Pagamento protegido</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POPUP UPSELL -->
+<div class="popup-overlay" id="popup-upsell">
+  <div class="popup-box">
+    <div class="popup-header">
+      <div class="popup-tag">⚡ Oferta exclusiva para você</div>
+      <h3>Espera! Temos uma oferta<br>especial nesse momento</h3>
+      <button class="popup-close" onclick="document.getElementById('popup-upsell').classList.remove('open')">✕</button>
+    </div>
+    <div class="popup-body">
+      <div class="popup-saving">
+        <div class="tag-desc">🔥 Plano Completo com 40% OFF</div>
+        <div class="price-old">De R$ 34,90</div>
+        <div class="price-new"><sup>R$</sup>19<span style="font-size:20px;font-weight:700;">,90</span></div>
+        <div class="desconto-badge">40% de desconto · Só agora!</div>
+      </div>
+      <div class="popup-items">
+        <div class="popup-item">Acesso completo a todos os módulos</div>
+        <div class="popup-item">Aulas em vídeo + materiais de apoio</div>
+        <div class="popup-item">Acesso a todas atualizações mensalmente</div>
+        <div class="popup-item">Guia de precificação para amigurumis</div>
+        <div class="popup-item">Dicas de vendas pelo Instagram e WhatsApp</div>
+        <div class="popup-item">🎀 Bônus: Ideias extras de modelos</div>
+        <div class="popup-item">🎨 Bônus: Combinações de cores</div>
+        <div class="popup-item">📋 Bônus: Guia de organização</div>
+        <div class="popup-item">🎒 Bônus: Mochilas e bolsas</div>
+      </div>
+      <div class="popup-urgency">⏰ Esta oferta some quando você fechar essa janela!</div>
+      <button class="popup-btn-sim" onclick="window.location.href='https://pay.wiapy.com/q6-o0faWh'">
+        Sim! Quero o plano completo por R$ 19,90 →
+      </button>
+      <button class="popup-btn-nao" onclick="window.location.href='https://pay.wiapy.com/JxG1AMrNXX'">
+        Não, prefiro continuar com o plano básico por R$ 14,90
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <p class="section-label">Resultados reais</p>
+    <h2 class="section-title">O que nossas alunas dizem</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Eu ficava com vergonha de cobrar pelo meu trabalho. Depois do módulo de precificação entendi meu valor e já vendi 11 bonecas no primeiro mês!"</p>
+        <div class="testi-footer">
+          <img class="testi-avatar" src="https://i.imgur.com/VMBVAHx.jpg" alt="Fernanda C.">
+          <div class="testi-info">
+            <span class="testi-name">Fernanda C.</span>
+            <span class="testi-city">São Paulo – SP</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Comecei do zero, sem saber nada de crochê. As aulas são tão didáticas que em 2 semanas já estava fazendo meu primeiro amigurumi completo."</p>
+        <div class="testi-footer">
+          <img class="testi-avatar" src="https://i.imgur.com/vxdyaTy.jpg" alt="Camila R.">
+          <div class="testi-info">
+            <span class="testi-name">Camila R.</span>
+            <span class="testi-city">Fortaleza – CE</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Valia muito mais do que os R$ 47. Aprendi a vender pelo Instagram e hoje o crochê já paga minhas contas do mês."</p>
+        <div class="testi-footer">
+          <img class="testi-avatar" src="https://i.imgur.com/ZIfNoxy.jpg" alt="Tatiane O.">
+          <div class="testi-info">
+            <span class="testi-name">Tatiane O.</span>
+            <span class="testi-city">Belo Horizonte – MG</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <p class="section-label">Dúvidas frequentes</p>
+    <h2 class="section-title">Perguntas e respostas</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Preciso ter experiência em crochê para fazer o curso?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Não! O curso foi criado para iniciantes. Você vai aprender do zero, desde os pontos básicos até criar bonecas completas. Basta ter vontade de aprender.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Como vou receber o acesso ao curso?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Assim que o pagamento for confirmado, você recebe o acesso por e-mail imediatamente. É só entrar na plataforma e começar a aprender!</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Consigo assistir as aulas pelo celular?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Sim! As aulas funcionam em qualquer dispositivo — celular, tablet ou computador. Você aprende no seu ritmo, onde e quando quiser.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Em quanto tempo consigo fazer e vender minha primeira boneca?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Muitas alunas fazem a primeira boneca ainda na primeira semana de curso. Com dedicação e seguindo o passo a passo, em poucos dias você já pode estar vendendo!</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          O acesso ao conteúdo tem prazo de validade?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Não! Você tem acesso vitalício ao conteúdo. Pode assistir quantas vezes quiser e no seu próprio tempo, sem nenhuma pressa.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          E se eu não gostar do curso?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Você tem 7 dias de garantia total. Se por qualquer motivo não ficar satisfeita, basta entrar em contato e devolvemos 100% do seu dinheiro. Sem burocracia, sem perguntas.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="garantia">
+  <div class="garantia-inner">
+    <img src="https://vendasdiretasbrasil.com.br/wp-content/uploads/2019/04/selo-garantia3-699x1024.png" alt="Selo de Garantia" style="width:200px;object-fit:contain;mix-blend-mode:multiply;">
+  </div>
+</section>
+
+<!-- NOTIFICAÇÃO SOCIAL -->
+<div class="social-toast" id="socialToast">
+  <div class="social-toast-icon">🛍️</div>
+  <div class="social-toast-text">
+    <strong id="toastName"></strong>
+    <span id="toastMsg"></span>
+    <span class="social-toast-time" id="toastTime"></span>
+  </div>
+</div>
+
+<script>
+var compradores = [
+  {nome:'Maria S.', plano:'Plano Completo', tempo:'agora mesmo'},
+  {nome:'Ana Paula R.', plano:'Plano Completo', tempo:'há 2 minutos'},
+  {nome:'Fernanda C.', plano:'Plano Completo', tempo:'há 5 minutos'},
+  {nome:'Juliana M.', plano:'Plano Completo', tempo:'há 7 minutos'},
+  {nome:'Camila T.', plano:'Plano Completo', tempo:'há 10 minutos'},
+  {nome:'Patricia L.', plano:'Plano Completo', tempo:'há 12 minutos'},
+  {nome:'Renata O.', plano:'Plano Completo', tempo:'há 15 minutos'},
+  {nome:'Larissa B.', plano:'Plano Completo', tempo:'agora mesmo'},
+  {nome:'Aline F.', plano:'Plano Completo', tempo:'há 3 minutos'},
+  {nome:'Tatiane G.', plano:'Plano Completo', tempo:'há 8 minutos'},
+];
+var toastIndex = 0;
+function showToast(){
+  var toast = document.getElementById('socialToast');
+  var item = compradores[toastIndex % compradores.length];
+  document.getElementById('toastName').textContent = item.nome;
+  document.getElementById('toastMsg').textContent = 'acabou de comprar o ' + item.plano + '!';
+  document.getElementById('toastTime').textContent = item.tempo;
+  toast.classList.add('show');
+  setTimeout(function(){ toast.classList.remove('show'); }, 4000);
+  toastIndex++;
+}
+setTimeout(function(){
+  showToast();
+  setInterval(showToast, 9000);
+}, 3000);
+</script>
+
+<script>
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(el){el.classList.remove('open');});
+  if(!isOpen) item.classList.add('open');
+}
+</script>
+
+<footer>
+  <p>© 2025 Crochê que Vende · Todos os direitos reservados</p>
+</footer>
+
+</body>
+</html>

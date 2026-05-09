@@ -8,3 +8,9 @@ PRINCESA BELA/
 TECNICA/
 VIDEOS PÁRA USAR NA CRIAÇÃO/
 aula em video melissa/
+
+# Local Netlify folder
+.netlify
+
+# Node.js
+node_modules/
